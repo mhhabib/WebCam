@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext");
+html {
+  position: relative;
+  overflow-x: hidden !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  color: #F0E8D0;
+  background-color: #001233;
+}
+.camera__section{
+  margin-top: 5%;
+  width: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  justify-content: center;
+}
+#my_camera{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+}
+.button {
+  border: none;
+  color: white;
+  border-radius: 5px;
+  padding: 8px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: #FF595A; 
+  color: black; 
+  border: 2px solid #F0E8D0;
+}
+
+.button:hover {
+  background-color: #FF595A;
+  color: white;
+}
