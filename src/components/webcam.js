@@ -1,7 +1,6 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Webcam from "react-webcam";
-import "./webcam.css";
-import uuid from "react-uuid";
+import axios from "axios";
 
 function WebCamera() {
   const webcamRef = React.useRef(null);
@@ -17,16 +16,62 @@ function WebCamera() {
     }
   };
 
-  const capture = () => {
-    const imageSrc = webcamRef.current.getScreenshot({
-      width: 1920,
-      height: 1080,
-    });
-    setimageList((previousData) => {
-      return [{ id: uuid.toString(), imageName: imageSrc }, ...previousData];
-    });
-  };
+  // Fetch all image files
+  useEffect(() => {
+      controlData()
+  }, []);
 
+  const dataURLtoBlob = (dataURL) => {
+    const byteString = window.atob(dataURL.split(",")[1]);
+    const mimeString = dataURL.split(",")[0].split(":")[1].split(";")[0];
+    
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++){
+      ia[i]=byteString.charCodeAt(i);
+    }
+    return new Blob([ab], {type: mimeString});
+  }
+
+  const controlData = async () => {
+      const response = await fetch("http://localhost:8000/getfiles/", {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+          },
+      });
+      const data = await response.json();
+      if (response.status === 200) {
+        console.log(data.images)
+        setimageList(data.images)
+      }
+  };
+  const capture = async() => {
+      const imageSrc = webcamRef.current.getScreenshot({
+        width: 1280,
+        height: 720,
+      });
+      const blob = dataURLtoBlob(imageSrc);
+      const formData = new FormData();
+      formData.append("file", blob, "image.jpg"); 
+      const response = await axios.post(
+          "http://localhost:8000/upload",
+          formData,
+          {
+              headers: {
+                  "Content-Type": "multipart/form-data",
+              },
+          }
+      );
+      if (response.status === 201) {
+        console.log("Image uploaded successfully!");
+        controlData();
+      } else {
+        console.error(`Error uploading image: ${response.status}`);
+      }
+  }   
+  
+  
   const photoDiv = {
     marginTop: "50px",
     textAlign: "center",
@@ -103,10 +148,10 @@ function WebCamera() {
         </div>
       </div>
       <div style={photoDiv}>
-        {imageList.map((imageData) => (
-          <div style={{ display: "inline-block", marginBottom: "30px" }}>
-            <img style={photoStyle} src={imageData.imageName} alt="" /> <br />
-            <a style={downloadButton} href={imageData.imageName} download>
+        {imageList?.map((imageData) => (
+          <div key={imageData._id} style={{ display: "inline-block", marginBottom: "30px" }}>
+            <img style={photoStyle} src={imageData.imageUrl} alt="" /> <br />
+            <a style={downloadButton} href={imageData.imageUrl} download>
               <i className="fa fa-download"> </i>
               Download
             </a>
