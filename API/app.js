@@ -1,3 +1,4 @@
+require('dotenv').config()
 const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -42,9 +43,9 @@ app.use(apiroutes)
 
 
 // DB connection and port controller
-mongoose.connect("mongodb+srv://mhhabibrex:JdgfcaH5KmEsEKcw@textanalyzer.2d0t32g.mongodb.net/webcam?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGODB_URI)
     .then(result => {
-        app.listen(8000);
+        app.listen(process.env.PORT);
         console.log("Database connection succesfull and port is running...")
     })
     .catch(err => console.error("port is not running"));
