@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# WebCam
+**Webcam** is a camera-based authentication app. This application aims to capture images intermittently running between an online exam/test/evaluation. You may notice this application importance while you're giving hackerrank online competency test.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a basic webcam image capture application. You can use customizely according to your need. 
 
-## Available Scripts
+## Technology used for this application
 
-In the project directory, you can run:
+- NodeJs
+- ExpressJs
+- ReactJs
+- MongoDB
 
-### `npm start`
+## Implemented API
+Api | Description
+---|----
+`/new-upload` |  Upload capture image to the remote server
+`/getfiles `| Fetch all the captured images
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation and Usages
+Clone this repository and there you will find API directory too
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**_API installation and usages_**
 
-### `npm test`
+- Go to API directory
+- Install dependacy package `npm install`
+- Provide `MongoDB URI` and `PORT`
+- Run API `npm start`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**_Frontend installation and usages_**
 
-### `npm run build`
+- Install dependacy package `npm install`
+- Run API `npm start`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Demo
+See live [demo](https://mhhabib.github.io/WebCam/) local only 
+<img width="1386" alt="Screenshot 2024-02-17 at 8 20 28 PM" src="https://github.com/mhhabib/WebCam/assets/17263976/38dfb66a-b77f-4cb3-bd2c-baf5215f2fc2">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contribution
+Feel free to create issue and PR
