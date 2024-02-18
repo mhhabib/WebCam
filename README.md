@@ -32,8 +32,8 @@ Clone this repository and there you will find API directory too
 - Run API `npm start`
 
 ## Demo
-See live [demo](https://mhhabib.github.io/WebCam/) local only 
-<img width="1386" alt="Screenshot 2024-02-17 at 8 20 28 PM" src="https://github.com/mhhabib/WebCam/assets/17263976/38dfb66a-b77f-4cb3-bd2c-baf5215f2fc2">
+![Screenshot 2024-02-18 at 12 28 08 PM](https://github.com/mhhabib/WebCam/assets/17263976/a0f5cfad-66c4-40e2-bb69-c867129d294b)
+
 
 ## Contribution
 Feel free to create issue and PR
