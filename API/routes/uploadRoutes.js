@@ -6,5 +6,5 @@ const router=express.Router()
 router.get('/getfiles', uploadController.getFiles);
 
 // POST /create new file
-router.post('/new-upload', uploadController.createNewFile);
+router.post('/upload', uploadController.createNewFile);
 module.exports = router

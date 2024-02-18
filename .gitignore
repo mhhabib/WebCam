@@ -11,6 +11,7 @@
 # production
 /build
 API/uploads
+API/node_modules/dotenv/
 
 # misc
 .DS_Store

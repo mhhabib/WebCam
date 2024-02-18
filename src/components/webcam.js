@@ -6,21 +6,25 @@ const API = process.env.REACT_APP_BASE_API
 
 function WebCamera() {
   const webcamRef = React.useRef(null);
-  const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const captureInterval=React.useRef(null);
+  const [isCameraOpen, setIsCameraOpen] = useState(true);
   const [imageList, setimageList] = useState([]);
-  const cameraToggleButton = isCameraOpen ? "Close Camera" : "Open Camera";
-  const cameraControl = () => {
-    if (isCameraOpen) {
-      setIsCameraOpen(false);
-      setimageList([]);
-    } else {
-      setIsCameraOpen(true);
-    }
-  };
+ 
 
   // Fetch all image files
+  let captureCount=1;
+  const captureImage=()=>{
+    capture();
+    captureCount--;
+    if(captureCount<=0){
+      clearInterval(captureInterval.current)
+      setIsCameraOpen(false)
+    }
+  }
   useEffect(() => {
       controlData()
+      captureInterval.current=setInterval(captureImage, 5000);
+      return ()=>clearInterval(captureInterval.current);
   }, []);
 
   const dataURLtoBlob = (dataURL) => {
@@ -84,27 +88,6 @@ function WebCamera() {
     border: "5px solid #d1d1d1",
     borderRadius: "20px",
   };
-  const onOffButton = {
-    textDecoration: "none",
-    backgroundColor: "#D61C4E",
-    border: "none",
-    color: "#E0E0E0",
-    padding: "6px 15px",
-    cursor: "pointer",
-    fontSize: "16px",
-  };
-  const emptyCamera = {
-    marginTop: "30%",
-  };
-  const captureButton = {
-    textDecoration: "none",
-    backgroundColor: "#18978F",
-    border: "none",
-    color: "#E0E0E0",
-    padding: "6px 15px",
-    cursor: "pointer",
-    fontSize: "16px",
-  };
   const cameraBox = {
     marginTop: "50px",
     textAlign: "center",
@@ -139,17 +122,6 @@ function WebCamera() {
             ref={webcamRef}
           />
         )}
-        {!isCameraOpen && <div style={emptyCamera}></div>}
-        <div>
-          <button style={onOffButton} onClick={cameraControl}>
-            {cameraToggleButton}
-          </button>{" "}
-          {isCameraOpen && (
-            <button style={captureButton} onClick={capture}>
-              Capture Image
-            </button>
-          )}
-        </div>
       </div>
       <div style={photoDiv}>
         {imageList?.map((imageData) => (
