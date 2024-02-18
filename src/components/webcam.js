@@ -2,6 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
 
+const API = process.env.REACT_APP_BASE_API
+
 function WebCamera() {
   const webcamRef = React.useRef(null);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
@@ -34,7 +36,7 @@ function WebCamera() {
   }
 
   const controlData = async () => {
-      const response = await fetch("http://localhost:8000/getfiles/", {
+      const response = await fetch(`${API}getfiles/`, {
           method: "GET",
           headers: {
               "Content-Type": "application/json",
@@ -42,7 +44,6 @@ function WebCamera() {
       });
       const data = await response.json();
       if (response.status === 200) {
-        console.log(data.images)
         setimageList(data.images)
       }
   };
@@ -55,7 +56,7 @@ function WebCamera() {
       const formData = new FormData();
       formData.append("file", blob, "image.jpg"); 
       const response = await axios.post(
-          "http://localhost:8000/upload",
+        `${API}upload/`,
           formData,
           {
               headers: {
@@ -123,6 +124,9 @@ function WebCamera() {
     fontSize: "16px",
     width: "19%",
   };
+  const imageDataSrc=(path) =>{
+    return `${API}${path}`
+  }
   return (
     <Fragment>
       <div style={cameraBox}>
@@ -150,8 +154,8 @@ function WebCamera() {
       <div style={photoDiv}>
         {imageList?.map((imageData) => (
           <div key={imageData._id} style={{ display: "inline-block", marginBottom: "30px" }}>
-            <img style={photoStyle} src={imageData.imageUrl} alt="" /> <br />
-            <a style={downloadButton} href={imageData.imageUrl} download>
+            <img style={photoStyle} src={imageDataSrc(imageData.imageUrl)} alt="" /> <br />
+            <a style={downloadButton} href={imageDataSrc(imageData.imageUrl)} download>
               <i className="fa fa-download"> </i>
               Download
             </a>
