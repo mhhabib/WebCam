@@ -1,10 +1,22 @@
 # WebCam
 **Webcam** is a camera-based authentication app. This application aims to capture images intermittently running between an online exam/test/evaluation. You may notice this application's importance while you're taking the Hackerrank online competency test.
 
-This is a basic webcam image capture application. This is how the application works
+### This is a basic webcam image capture application. This is how the application works
 - The camera will open when the application loading done
 - After 5 seconds of camera initialization, an image will be captured and sent to the DB
 - Successful image capture, you can redirect your preferred page.
+
+```mermaid
+flowchart TD
+    A[Application run] --> B{Camera Open?}
+    B -- Yes --> C{Image Capture?}
+    C -- Yes --> F[API Service]
+    F --> G[Database]
+    F --> H[Display captured image/Redirect custom page]
+    G --> F
+    C -- No --->E[Show Error Message]
+    B -- No ----> E[Show Error Message]
+```
 
 ## Technology used for this application
 
