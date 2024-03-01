@@ -9,13 +9,14 @@
 ```mermaid
 flowchart TD
     A[Application run] --> B{Camera Open?}
-    B -- Yes --> C{Image Capture?}
-    C -- Yes --> F[API Service]
-    F --> G[Database]
-    F --> H[Display captured image/Redirect custom page]
-    G --> F
-    C -- No --->E[Show Error Message]
-    B -- No ----> E[Show Error Message]
+  B -- Yes --> W[Waiting for user permission]
+  W --> C{Image Capture?}
+  C -- Yes --> F[API Service]
+  F --> G[Database]
+  F --> H[Display captured image/Redirect custom page]
+  G --> F
+  C -- No --->E[Show Error Message]
+  B -- No ----> E[Show Error Message]
 ```
 
 ## Technology used for this application
